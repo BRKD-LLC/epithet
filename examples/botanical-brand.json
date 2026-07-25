@@ -1,0 +1,50 @@
+{
+  "$schema": "https://epithet.brkdllc.com/schema/v1",
+  "$version": "1.0",
+  "mood": "verdant, calm, hand-tended",
+  "rationale": "Fernwell is a small-batch botanical skincare label. The direction leans on a living green anchored by warm paper neutrals so product photography reads as fresh rather than clinical. Type pairs a humanist serif for headings with a quiet grotesque body to feel crafted, not corporate. Every choice defers to the plant material: the brand is the frame, never the subject.",
+  "palette": [
+    { "role": "primary", "color": "#2f5d3a", "semantic": "Deep fern green — the brand anchor; used for logo, primary buttons, and dominant surfaces." },
+    { "role": "secondary", "color": "#7fa66a", "semantic": "Sage — a softer supporting green for section backgrounds and secondary chrome." },
+    { "role": "accent", "color": "#d98b3a", "semantic": "Marigold — a warm counterpoint that draws the eye to a single call to action per view." },
+    { "role": "background", "color": "#f6f3ea", "semantic": "Warm paper — the default canvas; keeps product imagery feeling natural and unlit." },
+    { "role": "text", "color": "#1f2a20", "semantic": "Near-black pine — high-contrast body text on the paper background." },
+    { "role": "muted", "color": "#9a9a86", "semantic": "Dried-stem grey — captions, metadata, and disabled states." }
+  ],
+  "typography": [
+    {
+      "role": "heading",
+      "family": "Fraunces",
+      "semantic": "A humanist serif with soft optical sizing — reads crafted and editorial, echoing apothecary labels.",
+      "css": { "fontFamily": "'Fraunces', Georgia, serif", "fontWeight": 600, "fontSize": "clamp(2rem, 4vw, 3.5rem)", "lineHeight": "1.1", "letterSpacing": "-0.01em" }
+    },
+    {
+      "role": "body",
+      "family": "Inter",
+      "semantic": "A neutral grotesque that stays quiet under the serif and keeps long ingredient copy readable.",
+      "css": { "fontFamily": "'Inter', system-ui, sans-serif", "fontWeight": 400, "fontSize": "1.0625rem", "lineHeight": "1.6", "letterSpacing": "normal" }
+    },
+    {
+      "role": "caption",
+      "family": "Inter",
+      "semantic": "Small-caps captioning for botanical names and provenance notes.",
+      "css": { "fontFamily": "'Inter', system-ui, sans-serif", "fontWeight": 500, "fontSize": "0.8125rem", "lineHeight": "1.4", "letterSpacing": "0.04em" }
+    }
+  ],
+  "layout": [
+    {
+      "pattern": "editorial-split",
+      "semantic": "Full-bleed product photograph on one side, generous text column on the other — lets the plant material carry the page.",
+      "css": { "display": "grid", "gridTemplateColumns": "1.2fr 1fr", "gap": "3rem", "alignItems": "center", "padding": "5rem 2rem", "maxWidth": "1180px" }
+    }
+  ],
+  "cohesion": {
+    "score": 88,
+    "summary": "Tightly cohesive: a single green family carries every surface and the paper neutral unifies imagery. The marigold accent is the only high-chroma note, so it never competes with itself."
+  },
+  "principles": [
+    { "title": "Plant first, brand second", "detail": "Botanical material is always the visual subject; brand chrome frames it and never overlaps it." },
+    { "title": "One warm note per view", "detail": "The marigold accent appears exactly once on a screen — a single call to action — so it always means the same thing." },
+    { "title": "Paper, never white", "detail": "Backgrounds use the warm paper neutral, never pure #ffffff, so photography reads as natural light rather than studio strobe." }
+  ]
+}

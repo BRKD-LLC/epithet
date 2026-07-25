@@ -1,0 +1,55 @@
+{
+  "$schema": "https://epithet.brkdllc.com/schema/v1",
+  "$version": "1.0",
+  "mood": "literary, contrasty, unhurried",
+  "rationale": "The Meridian Review is an independent long-form culture publication. The direction is unapologetically print-derived: a high-contrast serif display, a warm ivory stock, and a single ink-red for editorial marks. Layout gives text room to be read slowly. Color is nearly absent by design — the writing is the design.",
+  "palette": [
+    { "role": "primary", "color": "#1a1a1a", "semantic": "Ink black — headlines, rules, and body text; the publication's dominant mark." },
+    { "role": "secondary", "color": "#5b5751", "semantic": "Warm grey — bylines, standfirsts, and secondary editorial furniture." },
+    { "role": "accent", "color": "#a4243b", "semantic": "Editorial red — section marks, pull-quote rules, and drop caps; used sparingly for emphasis." },
+    { "role": "background", "color": "#f4efe6", "semantic": "Ivory stock — the page; warm and low-glare for long reading." },
+    { "role": "text", "color": "#1a1a1a", "semantic": "Ink black body text at book contrast on ivory." },
+    { "role": "muted", "color": "#8a857c", "semantic": "Faded grey — folios, timestamps, and caption credits." }
+  ],
+  "typography": [
+    {
+      "role": "heading",
+      "family": "Playfair Display",
+      "semantic": "A high-contrast Didone serif — the front-of-book display face; dramatic at large sizes.",
+      "css": { "fontFamily": "'Playfair Display', 'Times New Roman', serif", "fontWeight": 700, "fontSize": "clamp(2.5rem, 6vw, 5rem)", "lineHeight": "1.05", "letterSpacing": "-0.005em" }
+    },
+    {
+      "role": "body",
+      "family": "Source Serif 4",
+      "semantic": "A readable transitional serif for long-form body — comfortable at book measure and small leading.",
+      "css": { "fontFamily": "'Source Serif 4', Georgia, serif", "fontWeight": 400, "fontSize": "1.1875rem", "lineHeight": "1.7", "letterSpacing": "normal" }
+    },
+    {
+      "role": "caption",
+      "family": "Söhne",
+      "semantic": "A neutral grotesque, small and tracked, to contrast the serifs on captions and standfirsts.",
+      "css": { "fontFamily": "'Söhne', system-ui, sans-serif", "fontWeight": 500, "fontSize": "0.8125rem", "lineHeight": "1.45", "letterSpacing": "0.06em" }
+    }
+  ],
+  "layout": [
+    {
+      "pattern": "single-column-longform",
+      "semantic": "A narrow, centered measure of roughly 66 characters — optimized for sustained reading, not scanning.",
+      "css": { "display": "block", "maxWidth": "680px", "padding": "4rem 1.5rem" }
+    },
+    {
+      "pattern": "pull-quote-break",
+      "semantic": "A wide, indented pull quote in the display serif with an editorial-red rule, breaking the column rhythm.",
+      "css": { "display": "grid", "gridTemplateColumns": "minmax(0, 1fr)", "gap": "1rem", "padding": "2.5rem 0", "maxWidth": "820px" }
+    }
+  ],
+  "cohesion": {
+    "score": 90,
+    "summary": "Highly cohesive through restraint: two serifs and one grotesque on a single ivory stock, with red as the lone chromatic mark. The system reads as one continuous publication."
+  },
+  "principles": [
+    { "title": "The measure is sacred", "detail": "Body text never exceeds ~66 characters per line; readability outranks filling the viewport." },
+    { "title": "Red is punctuation, not paint", "detail": "Editorial red marks structure — section breaks, drop caps, pull-quote rules — and is never used as a fill or background." },
+    { "title": "Serif carries the voice", "detail": "Display and body are both serif; the lone grotesque exists only to set captions apart, keeping the literary register intact." }
+  ]
+}

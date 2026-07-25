@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://epithet.brkdllc.com/schema/v1",
+  "title": "epithet.json",
+  "description": "An open, machine-readable creative-direction format. One epithet.json document describes a brand's visual identity — palette, typography, layout, mood, cohesion, and composition principles — precisely enough for an AI agent to generate on-brand output without a human translating the brand into a prompt.",
+  "type": "object",
+  "required": ["$schema", "$version", "rationale", "palette", "typography"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "description": "The epithet spec version this document conforms to. For v1 documents this MUST be the v1 schema URI exactly.",
+      "type": "string",
+      "const": "https://epithet.brkdllc.com/schema/v1"
+    },
+    "$version": {
+      "description": "Semantic version of the document's content against the spec, MAJOR.MINOR or MAJOR.MINOR.PATCH. MAJOR matches the schema's major version (1 for the v1 schema URI).",
+      "type": "string",
+      "pattern": "^1\\.[0-9]+(\\.[0-9]+)?$"
+    },
+    "mood": {
+      "description": "A short, human-readable mood descriptor for the brand, e.g. \"warm, editorial, grounded\". Optional — omit when no clear mood signal was read.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "rationale": {
+      "description": "A brief natural-language statement of the overall creative direction and why the choices hang together. Written for an agent to read before it generates. May be an empty string when no rationale was produced.",
+      "type": "string",
+      "maxLength": 4000
+    },
+    "palette": {
+      "description": "Named color roles. An agent reads a role and knows the color's job (which anchors surfaces, which draws the eye) instead of guessing from a hex dump.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/colorRole" }
+    },
+    "typography": {
+      "description": "Font families paired to roles, so an agent can typeset a layout without asking what size or weight the headline should be.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/typographyRole" }
+    },
+    "layout": {
+      "description": "Composition patterns with directly-usable CSS. Optional — present on full creative-direction documents, typically absent on a brand-DNA read.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/layoutPattern" }
+    },
+    "cohesion": {
+      "description": "How tightly the studied assets relate visually. Null when there was not enough signal (assets unanalyzed / no color data) — an honest empty state rather than a fabricated number.",
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/cohesion" }
+      ]
+    },
+    "principles": {
+      "description": "Titled composition rules distilled from the brand — hard constraints an agent should honor, not suggestions.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/principle" }
+    }
+  },
+  "$defs": {
+    "colorRole": {
+      "type": "object",
+      "required": ["role", "color", "semantic"],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "description": "The color's structural job in the system.",
+          "type": "string",
+          "enum": ["primary", "secondary", "accent", "background", "text", "muted"]
+        },
+        "color": {
+          "description": "A CSS color value. Hex is canonical (#RGB, #RRGGBB, #RRGGBBAA); any CSS-valid color string (rgb(), oklch(), named) is accepted.",
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic": {
+          "description": "Human-readable note on why this color was chosen and how it relates to the rest of the palette. May be empty.",
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "typographyRole": {
+      "type": "object",
+      "required": ["role", "semantic"],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "description": "The role this pairing fills in the type system.",
+          "type": "string",
+          "enum": ["heading", "body", "accent", "caption"]
+        },
+        "family": {
+          "description": "The resolved font-family name (e.g. \"Bricolage Grotesque\"), extracted from css.fontFamily. Optional — omit when only the raw css stack is known.",
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic": {
+          "description": "Human-readable note on why this font fills this role. May be empty.",
+          "type": "string",
+          "maxLength": 500
+        },
+        "css": {
+          "description": "Directly-usable CSS declarations for this role. Optional on a normalized brand-DNA read, present on a full creative-direction document.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fontFamily"],
+          "properties": {
+            "fontFamily": {
+              "description": "A full CSS font-family stack, e.g. \"'Bricolage Grotesque', system-ui, sans-serif\".",
+              "type": "string",
+              "minLength": 1
+            },
+            "fontWeight": {
+              "description": "Numeric CSS font-weight, 1–1000.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "fontSize": { "type": "string", "minLength": 1 },
+            "lineHeight": { "type": "string", "minLength": 1 },
+            "letterSpacing": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "layoutPattern": {
+      "type": "object",
+      "required": ["pattern", "semantic"],
+      "additionalProperties": false,
+      "properties": {
+        "pattern": {
+          "description": "A named layout pattern, e.g. \"hero-overlay\", \"split-panel\", \"card-grid\".",
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic": {
+          "description": "Human-readable note on why this layout suits the brand and context. May be empty.",
+          "type": "string",
+          "maxLength": 500
+        },
+        "css": {
+          "description": "Directly-usable CSS declarations for the container. All properties optional.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "display": { "type": "string", "minLength": 1 },
+            "gridTemplateColumns": { "type": "string", "minLength": 1 },
+            "gap": { "type": "string", "minLength": 1 },
+            "alignItems": { "type": "string", "minLength": 1 },
+            "justifyContent": { "type": "string", "minLength": 1 },
+            "aspectRatio": { "type": "string", "minLength": 1 },
+            "padding": { "type": "string", "minLength": 1 },
+            "maxWidth": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "cohesion": {
+      "type": "object",
+      "required": ["score", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "score": {
+          "description": "Overall visual-cohesion score, 0–100, or null when there was not enough signal to score honestly.",
+          "oneOf": [
+            { "type": "number", "minimum": 0, "maximum": 100 },
+            { "type": "null" }
+          ]
+        },
+        "summary": {
+          "description": "Human-readable cohesion read across the assets. May be empty.",
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "principle": {
+      "type": "object",
+      "required": ["title", "detail"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "description": "Short name of the composition rule, e.g. \"Generous negative space\".",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "detail": {
+          "description": "One or two sentences explaining the rule and how to apply it.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        }
+      }
+    }
+  }
+}

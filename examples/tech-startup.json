@@ -1,0 +1,55 @@
+{
+  "$schema": "https://epithet.brkdllc.com/schema/v1",
+  "$version": "1.0",
+  "mood": "precise, confident, kinetic",
+  "rationale": "Cadence is a developer-infrastructure startup. The direction is high-contrast and instrument-like: a near-black canvas, a single electric accent, and monospace detailing so the product feels engineered rather than marketed. Type stays geometric and tight; the accent is rationed so it always signals action or state, never decoration.",
+  "palette": [
+    { "role": "primary", "color": "#111318", "semantic": "Graphite — the dominant dark surface; app chrome and hero backgrounds." },
+    { "role": "secondary", "color": "#1e2230", "semantic": "Raised panel — cards and elevated surfaces one step above the base." },
+    { "role": "accent", "color": "#4f7cff", "semantic": "Electric blue — the single action color; buttons, links, active states, and focus rings." },
+    { "role": "background", "color": "#0b0d12", "semantic": "Void — the base canvas behind everything." },
+    { "role": "text", "color": "#e8ebf2", "semantic": "Off-white — primary body text at high contrast on dark surfaces." },
+    { "role": "muted", "color": "#7c8598", "semantic": "Slate grey — secondary labels, metadata, and inactive controls." }
+  ],
+  "typography": [
+    {
+      "role": "heading",
+      "family": "Space Grotesk",
+      "semantic": "A geometric grotesque with mechanical detailing — reads engineered and modern for product headlines.",
+      "css": { "fontFamily": "'Space Grotesk', system-ui, sans-serif", "fontWeight": 600, "fontSize": "clamp(2.25rem, 5vw, 4rem)", "lineHeight": "1.05", "letterSpacing": "-0.02em" }
+    },
+    {
+      "role": "body",
+      "family": "Inter",
+      "semantic": "A neutral workhorse for documentation-dense body copy; excellent at small sizes on dark backgrounds.",
+      "css": { "fontFamily": "'Inter', system-ui, sans-serif", "fontWeight": 400, "fontSize": "1rem", "lineHeight": "1.65", "letterSpacing": "normal" }
+    },
+    {
+      "role": "accent",
+      "family": "JetBrains Mono",
+      "semantic": "Monospace for code, metrics, and status readouts — carries the engineered feel into the details.",
+      "css": { "fontFamily": "'JetBrains Mono', ui-monospace, monospace", "fontWeight": 500, "fontSize": "0.9375rem", "lineHeight": "1.5", "letterSpacing": "0" }
+    }
+  ],
+  "layout": [
+    {
+      "pattern": "centered-hero",
+      "semantic": "A single centered headline over a subtle grid, letting the product claim breathe before any UI is shown.",
+      "css": { "display": "grid", "justifyContent": "center", "alignItems": "center", "gap": "1.5rem", "padding": "8rem 2rem", "maxWidth": "960px" }
+    },
+    {
+      "pattern": "feature-triptych",
+      "semantic": "Three equal columns for capability cards — even weighting signals a platform, not a single feature.",
+      "css": { "display": "grid", "gridTemplateColumns": "repeat(3, 1fr)", "gap": "2rem", "padding": "4rem 2rem", "maxWidth": "1200px" }
+    }
+  ],
+  "cohesion": {
+    "score": 92,
+    "summary": "Extremely cohesive: one accent, one dark family, and monospace as the only textural variation. The restraint reads as engineering discipline."
+  },
+  "principles": [
+    { "title": "Ration the accent", "detail": "Electric blue only ever means an action or an active state — never a background, divider, or decoration." },
+    { "title": "Monospace is signal, not style", "detail": "Reserve the mono face for data, code, and status; using it for prose dilutes what it communicates." },
+    { "title": "Contrast over color", "detail": "Hierarchy comes from surface elevation and text contrast, not from adding hues — the palette stays near-monochrome on purpose." }
+  ]
+}
