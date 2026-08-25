@@ -3,7 +3,7 @@
  * epithet.json validator — zero dependencies.
  *
  * Usage:
- *   node tools/validate.js path/to/my-brand.json
+ *   node tools/validate.js path/to/my-identity.json
  *
  * Validates a document against the epithet v1 JSON Schema
  * (spec/v1/epithet.schema.json) and prints a field-level pass/fail report.

@@ -1,9 +1,10 @@
 # epithet.json — Specification v1
 
 `epithet.json` is an open, machine-readable **creative-direction format**. One
-document describes a brand's visual identity — palette, typography, layout,
-mood, cohesion, and composition principles — precisely enough for an AI agent to
-generate on-brand output without a human translating the brand into a prompt.
+document describes a creative identity — a brand, character, persona, product,
+or place — through its palette, typography, layout, mood, cohesion, and
+composition principles, precisely enough for an AI agent to generate output that
+stays true to that identity without a human translating it into a prompt.
 
 The canonical machine artifact is the JSON Schema at
 [`epithet.schema.json`](./epithet.schema.json) (JSON Schema draft 2020-12). This
@@ -122,14 +123,14 @@ The `css` object, when present, is **closed** and requires `fontFamily`:
 ### 2.7 `layout` — array, *optional*
 
 Composition patterns with directly-usable CSS. Present on full creative-direction
-documents; typically absent on a brand-DNA read.
+documents; typically absent on a normalized read.
 
 Each entry:
 
 | Field | Type | Required | Rules |
 |---|---|---|---|
 | `pattern` | string | ✔ | A named pattern, e.g. `"hero-overlay"`, `"split-panel"`, `"card-grid"`. Non-empty. |
-| `semantic` | string | ✔ | Why this layout suits the brand and context. May be empty. Max 500 chars. |
+| `semantic` | string | ✔ | Why this layout suits the identity and context. May be empty. Max 500 chars. |
 | `css` | object | — | Container CSS. All properties optional. |
 
 The `css` object is **closed**; every property is an optional non-empty string:
@@ -138,7 +139,7 @@ The `css` object is **closed**; every property is an optional non-empty string:
 
 ### 2.8 `cohesion` — object or `null`, *optional*
 
-How tightly the brand's visual elements relate to one another.
+How tightly the identity's visual elements relate to one another.
 
 | Field | Type | Required | Rules |
 |---|---|---|---|
@@ -158,7 +159,7 @@ it to decide how much creative latitude is appropriate.
 
 ### 2.9 `principles` — array, *optional*
 
-Titled composition rules distilled from the brand — hard constraints an agent
+Titled composition rules distilled from the identity — hard constraints an agent
 should honor, not suggestions.
 
 Each entry:
